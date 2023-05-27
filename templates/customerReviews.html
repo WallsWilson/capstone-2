@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block body_class%}Customer Reviews{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Customer Reviews</h1>
+    
+    <!-- Form to write a review -->
+    <h2>Write a Review</h2>
+    <form method="POST" action="{{ url_for('customerReviews') }}">
+        {{ form.csrf_token }}
+        
+        <div class="mb-3">
+            <label for="{{ form.name.id }}" class="form-label">Name:</label>
+            {{ form.name(class="form-control") }}
+            {% for error in form.name.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div class="mb-3">
+            <label for="{{ form.rating.id }}" class="form-label">Rating:</label>
+            {{ form.rating(class="form-control") }}
+            {% for error in form.rating.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div class="mb-3">
+            <label for="{{ form.review_text.id }}" class="form-label">Review Text:</label>
+            {{ form.review_text(class="form-control") }}
+            {% for error in form.review_text.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <div class="mb-3">
+            <input type="submit" value="Submit Review" class="btn btn-primary">
+        </div>
+    </form>
+    
+    <!-- Display all reviews -->
+    <h2>All Reviews</h2>
+    <ul class="list-group">
+        {% for review in reviews %}
+        <li class="list-group-item">
+            <h3>{{ review.name }}</h3>
+            <p>Rating: {{ review.rating }}</p>
+            <p>{{ review.review_text }}</p>
+            <p>Submitted at: {{ review.created_at }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -6,6 +6,14 @@
 -- To reset the sample schema, replace everything with
 -- two dots ('..' - without quotes).
 
+CREATE TABLE "CustomerReview" (
+    "id" SERIAL NOT NULL,
+    "name" VARCHAR(50) NOT NULL,
+    "rating" FLOAT NOT NULL,
+    "review_text" VARCHAR(500) NOT NULL,
+    "created_at" TIMESTAMP NOT NULL
+);
+
 CREATE TABLE "Customer" (
     "cust_id"  SERIAL  NOT NULL,
     "first_name" VARCHAR(255)   NOT NULL,
