@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, g, session, flash, request, abort, url_for
+from flask import Flask, redirect, render_template, flash, abort, url_for
 from models import db, connect_db, CustomerReview
 from form import ReviewForm;
 
@@ -38,17 +38,23 @@ def contact():
 
 @app.route('/customerReviews', methods=['GET', 'POST'])
 def customerReviews():
+    #create an instance of the ReviewForm
     form = ReviewForm()
 
     if form.validate_on_submit():
         customerReview = CustomerReview(
+            #retrieve the data to fill out the form
             name = form.name.data,
             rating = form.rating.data,
             review_text = form.review_text.data
         )
+        #add the customerReview to the database
         db.session.add(customerReview)
         db.session.commit()
+        #redirct back to the cusotmer review page with the new review they just subbimtted uploaded. 
         return redirect(url_for('customerReviews'))
     
+    #retrieve all the customerreviews from the DB
     reviews = CustomerReview.query.all()
+    #render the customer review page with the fomr and all the reviews.
     return render_template('customerReviews.html', form=form, reviews=reviews)

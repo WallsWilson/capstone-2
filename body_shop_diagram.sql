@@ -14,27 +14,3 @@ CREATE TABLE "CustomerReview" (
     "created_at" TIMESTAMP NOT NULL
 );
 
-CREATE TABLE "Customer" (
-    "cust_id"  SERIAL  NOT NULL,
-    "first_name" VARCHAR(255)   NOT NULL,
-    "last_name" VARCHAR(255)   NOT NULL,
-    CONSTRAINT "pk_Customer" PRIMARY KEY ("cust_id")
-);
-
-CREATE TABLE "Car" (
-    "car_id"  SERIAL  NOT NULL,
-    "car_year" integer   NOT NULL,
-    "car_make" VARCHAR(255)   NOT NULL,
-    "car_model" VARCHAR(255)   NOT NULL,
-    "drivable" boolean   NOT NULL,
-    "cust_id" integer,
-    CONSTRAINT "pk_Car" PRIMARY KEY ("car_id"),
-    CONSTRAINT "fk_Car_Customer" FOREIGN KEY ("cust_id") REFERENCES "Customer" ("cust_id")
-);
-
-CREATE TABLE "Appt" (
-    "date_and_time" timestamp   NOT NULL,
-    "car_id" integer,
-    CONSTRAINT "fk_Appt_Car" FOREIGN KEY ("car_id") REFERENCES "Car" ("car_id")
-);
-
