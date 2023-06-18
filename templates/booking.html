@@ -14,19 +14,21 @@
         <h1>Booking page</h1>
         <p>Select a time that works best to bring your car in. Please be sure to bring all documents with you to the appointment.</p>
 
+       
         <div id="bookingjs"></div>
-        <script src="https://cdn.timekit.io/booking-js/v2/booking.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.timekit.io/booking-js/v3/booking.min.css" />
+        <script src="https://cdn.timekit.io/booking-js/v3/booking.min.js" defer></script>
         <script>
         window.timekitBookingConfig = {
           app_key: 'test_widget_key_CcglKC7i6fWfgkGSP70Avjw8BYCSe9NP',
-          project_id: '8ae641fe-8bf9-4c1c-b8b0-898929d3b7dc'
+          project_id: '8ae641fe-8bf9-4c1c-b8b0-898929d3b7dc' // Change this! 
         }
         </script>
+            
 
       </div>
       <div class="col">
       </div>
     </div>
 
-
-{% endblock %}
+    {% endblock %}
